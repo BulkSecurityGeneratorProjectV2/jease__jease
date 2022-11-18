@@ -23,6 +23,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -109,7 +110,7 @@ public class Images {
 			throws IOException {
 		OutputStream output = null;
 		try {
-			File targetFile = File.createTempFile("img-", ".tmp");
+			File targetFile = Files.createTempFile("img-",".tmp").toFile();
 			output = new FileOutputStream(targetFile);
 			ImageIO.write(
 					getScaledInstance(ImageIO.read(image),
@@ -153,7 +154,7 @@ public class Images {
 	public static File rotate(File image) throws IOException {
 		OutputStream output = null;
 		try {
-			File targetFile = File.createTempFile("img-", ".tmp");
+			File targetFile = Files.createTempFile("img-",".tmp").toFile();
 			output = new FileOutputStream(targetFile);
 			ImageIO.write(getRotatedInstance(ImageIO.read(image)),
 					getFormat(image), output);
